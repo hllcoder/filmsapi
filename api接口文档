@@ -1,0 +1,220 @@
+home_apis下文件为所有前端api接口
+
+1.home_index_api.py为前端首页接口
+  api请求地址:127.0.0.1:5000/index/  GET
+    return { 'status':http状态码,'msg':返回消息,'movie_data':返回电影数据资源 }
+
+2.movie_animation_api.py为前端动画接口
+  api请求地址:127.0.0.1:5000/animation/   GET
+    return { 'status':http状态码,'msg':返回消息,'data':返回动画资源 }
+
+3.movie_play_api.py为前端电影播放接口
+  api请求地址:127.0.0.1:5000/play/<int:movie_id>/  GET  (movie_id 为电影的id号)
+    return { 'status':http状态码,'msg':返回消息,'movie_data':返回电影数据资源,'comment_data': 该电影的所有评论资源 }
+
+4.movie_search_api.py为前端搜索电影接口
+  api请求地址:127.0.0.1:5000/search/?name=xx   GET  name为搜索电影名称
+    return { 'status':http状态码,'msg':返回消息,'data':返回符合要求的电影资源 }
+
+5.user_api.py为前端用户接口
+   api请求地址:127.0.0.1:5000/user/  GET 获取用户信息
+      return { 'status':http状态码,'msg':返回消息,'data':返回用户详情资源 }
+
+   api请求地址:127.0.0.1:5000/user/<int:user_id>/  PUT 修改用户信息  (user_id用户的ID)
+      请求参数{'name':用户昵称,'email':用户邮箱,'info':用户简介,'phone':用户手机号,'face':用户头像}
+      return { 'status':http状态码,'msg':返回消息 }
+
+6.user_comments_api.py为用户评论接口
+   api请求地址:127.0.0.1:5000/comments/  GET 获取用户评论信息
+       return { 'status':http状态码,'msg':返回消息,'data':返回用户评论资源 }
+
+   api请求地址:127.0.0.1:5000/comments/  POST 创建用户评论信息  请求参数{'movie_id':评论电影的id,'content':评论电影的内容}
+       return { 'status':http状态码,'msg':返回消息 }
+
+7.user_log_api.py为用户登录日志接口
+    api请求地址:127.0.0.1:5000/logs/  GET 获取用户日志信息
+        return { 'status':http状态码,'msg':返回消息,'data':返回用户日志资源 }
+
+8.user_login_api.py为用户登录接口
+   api请求地址:127.0.0.1:5000/login/  POST
+   请求参数{'contact':用户的手机号或昵称或邮箱任选其一,'password':用户密码}
+        return { 'status':http状态码,'msg':返回消息,'token':用户的token信息 }
+
+9.user_moviecol_api.py为用户电影收藏接口
+    api请求地址:127.0.0.1:5000/usermoviecols/  GET 获取用户电影收藏信息
+        return { 'status':http状态码,'msg':返回消息,'data':返回用户电影收藏资源 }
+
+    api请求地址:127.0.0.1:5000/usermoviecols/<int:movie_id>/  POST 添加用户电影收藏 (movie_id为电影ID)
+        return { 'status':http状态码,'msg':返回消息 }
+
+    api请求地址:127.0.0.1:5000/usermoviecols/<int:movie_id>/  DELETE 取消用户电影收藏 (movie_id为电影ID)
+        return { 'status':http状态码,'msg':返回消息 }
+
+10.user_pwd_api.py为用户修改密码接口
+    api请求地址:127.0.0.1:5000/pwd/  PUT
+    请求参数{'oldpwd':用户旧密码,'newpwd':用户新密码}
+        return { 'status':http状态码,'msg':返回消息 }
+
+11.user_register_api.py为用户注册接口
+    api请求地址:127.0.0.1:5000/register/  POST
+    请求参数{'name':用户昵称,'email':用户邮箱,'password':用户密码,'phone':用户手机号}
+        return { 'status':http状态码,'msg':返回消息 }
+
+
+
+admin_apis下文件为所有后端api接口
+1.admin_auth_apis.py为权限接口
+    api请求地址:127.0.0.1:5000/admin/auths/  GET 获取所有权限信息
+        return { 'status':http状态码,'msg':返回消息,'data':返回所有权限信息资源 }
+
+    api请求地址:127.0.0.1:5000/admin/auths/  POST 添加权限信息
+    请求参数{'name':权限名称,'url':权限url}
+        return { 'status':http状态码,'msg':返回消息 }
+
+    api请求地址:127.0.0.1:5000/admin/auths/<int:auth_id>/  GET 获取具体权限信息 (auth_id:权限id)
+        return { 'status':http状态码,'msg':返回消息,'data':返回权限信息资源 }
+
+    api请求地址:127.0.0.1:5000/admin/auths/<int:auth_id>/  PUT 更新权限信息
+    请求参数{'name':权限名称,'url':权限url}
+        return { 'status':http状态码,'msg':返回消息 }
+
+    api请求地址:127.0.0.1:5000/admin/auths/<int:auth_id>/  DELETE 删除权限信息
+        return { 'status':http状态码,'msg':返回消息 }
+
+2.admin_index_api.py为后端首页接口
+    api请求地址:127.0.0.1:5000/admin/index/  GET 获取首页信息
+        return { 'status':http状态码,'msg':返回消息,'username':返回用户昵称}
+
+3.admin_log_api.py为日志接口
+    api请求地址:127.0.0.1:5000/admin/oplogs/  GET 获取管理员操作信息
+        return { 'status':http状态码,'msg':返回消息,'data':返回管理员日志操作资源}
+
+    api请求地址:127.0.0.1:5000/admin/adminlogs/  GET 获取管理员登录日志
+        return { 'status':http状态码,'msg':返回消息,'data':返回管理员登录日志资源}
+
+    api请求地址:127.0.0.1:5000/admin/userlogs/  GET 获取会员所有登录日志
+        return { 'status':http状态码,'msg':返回消息,'data':返回所有会员登录日志资源}
+
+4.admin_login_api.py为管理员登录接口
+    api请求地址:127.0.0.1:5000/admin/login/  POST
+    请求参数{'username':管理员账户,'password':管理员密码}
+        return { 'status':http状态码,'msg':返回消息,'token':返回token信息 }
+
+5.admin_member_api.py为管理会员信息接口
+    api请求地址:127.0.0.1:5000/admin/user/  GET 获取所有注册会员信息
+        return { 'status':http状态码,'msg':返回消息,'data':返回注册会员信息资源 }
+
+    api请求地址:127.0.0.1:5000/admin/user/<int:user_id>/  GET 获取具体注册会员信息 (user_id:会员id)
+        return { 'status':http状态码,'msg':返回消息,'data':返回具体注册会员信息资源 }
+
+    api请求地址:127.0.0.1:5000/admin/user/<int:user_id>/  DELETE 删除注册会员信息 (user_id:会员id)
+        return { 'status':http状态码,'msg':返回消息 }
+
+6.admin_movie_api.py为电影管理接口
+    api请求地址:127.0.0.1:5000/admin/movie/  GET 获取所有电影资源
+        return { 'status':http状态码,'msg':返回消息,'data':返回所有电影资源 }
+
+    api请求地址:127.0.0.1:5000/admin/movie/  POST 添加电影资源
+    请求参数{'title':电影名称,'info':电影简介,'star':电影星级,
+            'tag_id':标签ID,'area':电影上映区域,'length':播放时长,
+            'release_time':上映时间,'url':电影文件地址,'logo':电影封面}
+        return { 'status':http状态码,'msg':返回消息 }
+
+    api请求地址:127.0.0.1:5000/admin/movie/<int:movie_id>/  GET 获取具体电影资源 (movie_id:电影ID)
+        return { 'status':http状态码,'msg':返回消息,'data':返回所有电影资源 }
+
+    api请求地址:127.0.0.1:5000/admin/movie/<int:movie_id>/  PUT 更新电影资源 (movie_id:电影ID)
+     请求参数{'title':电影名称,'info':电影简介,'star':电影星级,
+            'tag_id':标签ID,'area':电影上映区域,'length':播放时长,
+            'release_time':上映时间,'url':电影文件地址,'logo':电影封面}
+         return { 'status':http状态码,'msg':返回消息 }
+
+     api请求地址:127.0.0.1:5000/admin/movie/<int:movie_id>/  DELETE 删除电影资源 (movie_id:电影ID)
+        return { 'status':http状态码,'msg':返回消息 }
+
+7.admin_movie_comment_api.py为电影评论管理接口
+     api请求地址:127.0.0.1:5000/admin/comments/  GET 获取所有电影评论资源
+        return { 'status':http状态码,'msg':返回消息,'data':所有电影评论资源 }
+
+     api请求地址:127.0.0.1:5000/admin/comments/<int:comment_id>/ GET 获取具体评论资源 (comment_id:评论ID)
+        return { 'status':http状态码,'msg':返回消息,'data':具体评论资源 }
+
+8.admin_moviecol_api.py为电影收藏管理接口
+    api请求地址:127.0.0.1:5000/admin/moviecols/  GET 获取所有电影收藏资源
+        return { 'status':http状态码,'msg':返回消息,'data':所有电影收藏资源 }
+
+    api请求地址:127.0.0.1:5000/admin/moviecols/<int:moviecol_id>/ GET 获取具体收藏资源 (moviecol_id:收藏记录ID)
+        return { 'status':http状态码,'msg':返回消息,'data':具体收藏资源 }
+
+9.admin_preview_api.py为电影动画管理接口
+    api请求地址:127.0.0.1:5000/admin/preview/  GET 获取所有动画资源
+        return { 'status':http状态码,'msg':返回消息,'data':所有动画资源 }
+
+    api请求地址:127.0.0.1:5000/admin/preview/  POST 添加动画资源
+     请求参数{'title':动画名称,'logo':动画图片}
+        return { 'status':http状态码,'msg':返回消息 }
+
+     api请求地址:127.0.0.1:5000/admin/preview/<int:preview_id>/  GET 获取具体动画资源 (preview_id:动画ID)
+        return { 'status':http状态码,'msg':返回消息,'data':具体动画资源 }
+
+     api请求地址:127.0.0.1:5000/admin/preview/<int:preview_id>/  PUT 更新具体动画资源 (preview_id:动画ID)
+     请求参数{'title':动画名称,'logo':动画图片}
+        return { 'status':http状态码,'msg':返回消息 }
+
+     api请求地址:127.0.0.1:5000/admin/preview/<int:preview_id>/  DELETE 删除具体动画资源 (preview_id:动画ID)
+        return { 'status':http状态码,'msg':返回消息 }
+
+10.admin_role_api.py为后台角色管理接口
+    api请求地址:127.0.0.1:5000/admin/roles/  GET 获取所有角色资源
+        return { 'status':http状态码,'msg':返回消息,'data':所有角色资源 }
+
+    api请求地址:127.0.0.1:5000/admin/roles/  POST 添加角色资源
+     请求参数{'name':角色名称,'auths':角色权限}
+        return { 'status':http状态码,'msg':返回消息 }
+
+     api请求地址:127.0.0.1:5000/admin/roles/<int:role_id>/  GET 获取具体角色资源 (role_id:角色ID)
+        return { 'status':http状态码,'msg':返回消息,'data':具体角色资源 }
+
+     api请求地址:127.0.0.1:5000/admin/roles/<int:role_id>/  PUT 更新具体角色资源 (role_id:角色ID)
+     请求参数{'name':角色名称,'auths':角色权限}
+        return { 'status':http状态码,'msg':返回消息 }
+
+     api请求地址:127.0.0.1:5000/admin/roles/<int:role_id>/  DELETE 删除具体角色资源 (role_id:角色ID)
+        return { 'status':http状态码,'msg':返回消息 }
+
+11.admin_tag_api.py为标签管理接口
+    api请求地址:127.0.0.1:5000/admin/tag/  GET 获取所有标签资源
+        return { 'status':http状态码,'msg':返回消息,'data':所有标签资源 }
+
+    api请求地址:127.0.0.1:5000/admin/tag/  POST 添加标签资源
+     请求参数{'tag_name':标签名称}
+        return { 'status':http状态码,'msg':返回消息 }
+
+     api请求地址:127.0.0.1:5000/admin/tag/<int:tag_id>/  GET 获取具体标签资源 (tag_id:标签ID)
+        return { 'status':http状态码,'msg':返回消息,'data':具体标签资源 }
+
+     api请求地址:127.0.0.1:5000/admin/tag/<int:tag_id>/  PUT 更新具体标签资源 (tag_id:标签ID)
+     请求参数{'tag_name':标签名称}
+        return { 'status':http状态码,'msg':返回消息 }
+
+     api请求地址:127.0.0.1:5000/admin/tag/<int:tag_id>/  DELETE 删除具体标签资源 (tag_id:标签ID)
+        return { 'status':http状态码,'msg':返回消息 }
+
+12.admin_user_api.py为管理员管理接口
+    api请求地址:127.0.0.1:5000/admin/adminusers/  GET 获取所有管理员资源
+        return { 'status':http状态码,'msg':返回消息,'data':所有管理员资源 }
+
+    api请求地址:127.0.0.1:5000/admin/adminusers/  POST 添加管理员资源
+     请求参数{'name':管理员账户,'pwd':管理员密码,'role_id':角色ID}
+        return { 'status':http状态码,'msg':返回消息 }
+
+13.admin_user_pwd_api.py为管理员修改密码接口
+    api请求地址:127.0.0.1:5000/admin/pwd/  PUT 更新管理员密码资源
+     请求参数{'oldpwd':用户旧密码,'newpwd':用户新密码}
+        return { 'status':http状态码,'msg':返回消息 }
+
+
+
+
+
+

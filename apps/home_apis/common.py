@@ -1,0 +1,1 @@
+HOME_TOKEN_PREFIX = 'home_'
