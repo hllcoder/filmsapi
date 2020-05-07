@@ -16,9 +16,9 @@ class AdminUserLoginResource(Resource):
         password = args.get('password')
         user_obj = Admin.query.filter_by(name=username).first()
         if not user_obj:
-            abort(404,message='用户名错误')
+            abort(400,message='用户名错误')
         if not user_obj.check_pwd(password):
-            abort(404,message='密码错误')
+            abort(400,message='密码错误')
         token = ADMIN_TOKEN_PREFIX + str(uuid.uuid4().hex)
         cache.set(token,user_obj.id)
         data = {
